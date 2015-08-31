@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import urlparse,urllib2,urllib,re
 import os
 import sys
@@ -201,7 +201,7 @@ def channels_list():
     #itemlist.append( Item( title="Asia-Team"             , channel="asiateam"             , language="ES"    , category="F,S"     , type="generic"  ))
     #itemlist.append( Item( title="Buena Isla"            , channel="buenaisla"            , language="ES"    , category="A,VOS"       , type="generic"  ))
 
-    itemlist.append( Item( viewmode="movie", title="Tengo una URL"         , channel="tengourl"   , language="" , category="" , type="generic"  ))
+    itemlist.append( Item( viewmode="movie", title="Inserisci un URL"         , channel="tengourl"   , language="" , category="" , type="generic"  ))
     if config.get_setting("personalchannel")=="true":
         itemlist.append( Item( title=config.get_setting("personalchannelname") , channel="personal" , language="" , category="" , type="generic"  ))
     if config.get_setting("personalchannel2")=="true":
@@ -217,8 +217,8 @@ def channels_list():
     itemlist.append( Item( title="Aquitorrent"             , channel="aquitorrent"        , language="ES" , category="T,F,S,D,A,VOS"       , type="generic" ))
     itemlist.append( Item( title="Bajui"                   , channel="bajui"              , language="ES" , category="F,S,D,VOS" , type="generic"    ))
     if config.get_setting("enableadultmode") == "true": itemlist.append( Item( title="Beeg"               , channel="beeg"            , language="ES" , category="X,F" , type="generic"  ))
-    itemlist.append( Item( title="Bricocine"               , channel="bricocine"          , language=""   , category="T,F,S" , type="generic" , thumbnail="http://s6.postimg.org/9u8m1ep8x/bricocine.jpg"    ))
-    itemlist.append( Item( title="Cineblog01 (IT)"         , channel="cineblog01"         , language="IT" , category="F,S,A,VOS"   , type="generic"  ))
+    itemlist.append( Item( title="Bricocine"               , channel="bricocine"          , language="ES"   , category="T,F,S" , type="generic" , thumbnail="http://s6.postimg.org/9u8m1ep8x/bricocine.jpg"    ))
+    #itemlist.append( Item( title="Cineblog01 (IT)"         , channel="cineblog01"         , language="IT" , category="F,S,A,VOS"   , type="generic"  ))
     itemlist.append( Item( title="Cinehanwer"              , channel="cinehanwer"         , language="ES" , category="F"   , type="generic"  ))
     itemlist.append( Item( title="Cinemaxx (RO)"           , channel="cinemax_rs"         , language="RU" , category="F"   , type="generic"  ))
     if config.get_setting("enableadultmode") == "true": itemlist.append( Item( title="Cinetemagay" , channel="cinetemagay"          , language="ES"    , category="X,F" , type="generic"    )) # sdfasd 15/4/2012
@@ -231,12 +231,12 @@ def channels_list():
     itemlist.append( Item( title="El señor del anillo"     , channel="elsenordelanillo"   , language="ES" , category="L,F"       , type="xbmc"  ))
     itemlist.append( Item( title="Elite Torrent"           , channel="elitetorrent"       , language="ES" , category="T,F,S,D"       , type="xbmc"  ))
     if config.get_setting("enableadultmode") == "true": itemlist.append( Item( title="Filesmonster Catalogue"    , channel="filesmonster_catalogue"           , language="es"    , category="X,F"   , type="generic"     ))
-    itemlist.append( Item( title="Film per tutti (IT)"     , channel="filmpertutti"       , language="IT" , category="F,S,A"   , type="generic"     ))
-    itemlist.append( Item( title="Film Senza Limiti (IT)"  , channel="filmsenzalimiti"    , language="IT" , category="F,S"       , type="generic"     ))
+    #itemlist.append( Item( title="Film per tutti (IT)"     , channel="filmpertutti"       , language="IT" , category="F,S,A"   , type="generic"     ))
+    #itemlist.append( Item( title="Film Senza Limiti (IT)"  , channel="filmsenzalimiti"    , language="IT" , category="F,S"       , type="generic"     ))
     itemlist.append( Item( title="Gnula"                   , channel="gnula"              , language="ES" , category="L,F" , type="generic"  )) # vcalvo 15/12/2011
     itemlist.append( Item( title="HDFull"                  , channel="hdfull"             , language="ES" , category="F,S" , type="generic"  )) # jesus 14/12/2014
     if config.get_setting("enableadultmode") == "true": itemlist.append( Item( title="Hentai FLV"    , channel="hentaiflv"           , language="es"    , category="X,A"   , type="generic"     ))
-    itemlist.append( Item( title="ItaliaFilms.tv (IT)"     , channel="italiafilm"         , language="IT" , category="A"   , type="generic"     ))
+    #itemlist.append( Item( title="ItaliaFilms.tv (IT)"     , channel="italiafilm"         , language="IT" , category="A"   , type="generic"     ))
     itemlist.append( Item( title="JKanime"                 , channel="jkanime"            , language="ES" , category="A" , type="generic"  )) # jesus 15/10/2012
     itemlist.append( Item( title="La Guarida valencianista", channel="guaridavalencianista",language="ES" , category="D"       , type="generic"  ))
     itemlist.append( Item( title="Mega HD"                 , channel="megahd"             , language="ES" , category="F,S,D,A"       , type="generic"  ))
@@ -257,14 +257,14 @@ def channels_list():
     itemlist.append( Item( title="Pelisadicto"             , channel="pelisadicto"        , language="ES" , category="F,L"        , type="generic"  ))
     itemlist.append( Item( title="Peliserie"               , channel="peliserie"          , language="ES" , category="F,S", type="generic"))
     itemlist.append( Item( title="PelisPekes"              , channel="pelispekes"         , language="ES" , category="F"        , type="generic"  ))
-    itemlist.append( Item( title="Pirate Streaming (IT)"   , channel="piratestreaming"    , language="IT" , category="F" , type="generic"    )) # jesus 16/7/2012
+    #itemlist.append( Item( title="Pirate Streaming (IT)"   , channel="piratestreaming"    , language="IT" , category="F" , type="generic"    )) # jesus 16/7/2012
     itemlist.append( Item( title="Pordede"                 , channel="pordede"            , language="ES" , category="F,S" , type="generic"    )) # jesus 16/6/2014
     if config.get_setting("enableadultmode") == "true": itemlist.append( Item( title="PornoActricesX"            , channel="pornoactricesx"          , language="ES" , category="X,F" , type="generic"    ))
     if config.get_setting("enableadultmode") == "true": itemlist.append(Item( title="PornHub", channel="pornhub", language="ES" , category="X,F" , type="generic" ,thumbnail="http://s22.postimg.org/5lzcocfqp/pornhub_logo.jpg" )) # superberny 19/01/2015
     itemlist.append( Item( title="Quebajamos"              , channel="quebajamos"         , language="ES" , category="F,S,D" , type="generic"  )) # jesus 16/06/2014
     itemlist.append( Item( title="Quiero Dibujos Animados" , channel="quierodibujosanimados",language="ES", category="S" , type="generic"  )) # jesus 12/11/2012
     itemlist.append( Item( title="Reyanime"                , channel="reyanime"           , language="ES" , category="A"          , type="generic"  ))
-    itemlist.append( Item( title="Robinfilm (IT)"          , channel="robinfilm"          , language="IT" , category="F"          , type="generic"  )) # jesus 16/05/2011
+    #itemlist.append( Item( title="Robinfilm (IT)"          , channel="robinfilm"          , language="IT" , category="F"          , type="generic"  )) # jesus 16/05/2011
     itemlist.append( Item( title="Seriesadicto"            , channel="seriesadicto"       , language="ES" , category="S,A"          , type="generic" ))
     itemlist.append( Item( title="Seriesblanco"            , channel="seriesblanco"       , language="ES" , category="S,VOS"          , type="generic" ))
     itemlist.append( Item( title="Seriesdanko"             , channel="seriesdanko"        , language="ES" , category="S,VOS"          , type="generic" ))
@@ -295,103 +295,44 @@ def channels_list():
     itemlist.append( Item( title="V Series"                , channel="vseries"            , language="ES" , category="F,S"       , type="generic"  ))
     itemlist.append( Item( title="Zentorrents"             , channel="zentorrents"        , language="ES" , category="T,F,S" , type="xbmc" , thumbnail="http://s6.postimg.org/9zv90yjip/zentorrentlogo.jpg"  ))
     itemlist.append( Item( title="Zpeliculas"              , channel="zpeliculas"         , language="ES" , category="F"       , type="generic"  ))
+########## Start ITALIAN CHANNELS ###########
+    itemlist.append( Item( title="Cineblog01 (IT)"       , channel="cineblog01"           , language="IT"    , category="F,S,A,VOS"   , type="generic"  ))
+    itemlist.append( Item( title="ItaliaFilms.tv (IT)"      , channel="italiafilm"           , language="IT"    , category="F,S,A"   , type="generic"     ))
+    itemlist.append( Item( title="Film per tutti (IT)"      , channel="filmpertutti"           , language="IT"    , category="F,S,A"   , type="generic"     ))
+    itemlist.append( Item( title="Film Senza Limiti (IT)"        , channel="filmsenzalimiti"       , language="IT"    , category="F"       , type="generic"     ))
+    itemlist.append( Item( title="Pirate Streaming (IT)" , channel="piratestreaming"      , language="IT" , category="F" , type="generic"    )) # jesus 16/7/2012
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] AnimeSubIta (IT)"   , channel="animesubita"           , language="IT"    , category="A"   , type="generic" ,thumbnail="http://i.imgur.com/eSAxd4p.png" ))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Asian Sub-Ita (IT)"      , channel="asiansubita"           , language="IT"    , category="F,S,A,VOS"   , type="generic"  ,thumbnail="http://asiansubita.altervista.org/wp-content/uploads/2014/11/asiansubita1.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Casa-Cinema (IT)"        , channel="casacinema"       , language="IT"    , category="F,S"       , type="generic"     ,thumbnail="http://casa-cinema.net/wp-content/themes/casacinema/images/logo-Black.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] FilmStream pw (IT)"        , channel="filmstreampw"       , language="IT"    , category="F,S"       , type="generic"     ,thumbnail="http://filmstream.pw/templates/tvspirit/images/logo.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Pianetastreaming (IT)"        , channel="pianetastreaming"       , language="IT"    , category="F"       , type="generic"     ,thumbnail="http://www.pianetastreaming.net/wp-content/uploads/2014/03/PianetaStreaming.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Italian-Stream (IT)"        , channel="italianstream"       , language="IT"    , category="F,S"       , type="generic"     ,thumbnail="http://italian-stream.tv/wp-content/uploads/2014/03/logo11.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Film-stream.org (IT)"        , channel="filmstream"       , language="IT"    , category="F,S"       , type="generic"     ,thumbnail="http://i.imgur.com/kSIfR3l.jpg"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Altadefinizione01 (IT)"        , channel="altadefinizione01"       , language="IT"    , category="F,S,A"       , type="generic"     ,thumbnail="http://www.altadefinizione01.com/wp-content/uploads/2015/04/logo.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Streamblog (IT)"        , channel="streamblog"       , language="IT"    , category="F,S,A"       , type="generic"     ,thumbnail="http://www.streamblog.tv/templates/Smotrikino/images/logo.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Guardarefilm (IT)"        , channel="guardarefilm"       , language="IT"    , category="F"       , type="generic"     ,thumbnail="http://www.guardarefilm.tv/templates/tvSpirit1/images/logo.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Streaming01 (IT)"        , channel="streaming01"       , language="IT"    , category="F"       , type="generic"     ,thumbnail="http://streaming01.com/templates/movie-groovie/images/logo.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Liberoita (IT)"        , channel="liberoita"       , language="IT"    , category="F"       , type="generic"     ,thumbnail="http://liberoita.com/wp-content/themes/sito/images/logo.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Fastvideotv (IT)"        , channel="fastvideotv"       , language="IT"    , category="F"       , type="generic"     ,thumbnail="http://www.fastvideo.tv/wp-content/uploads/2015/07/fastvideo.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Cinemagratis (IT)"        , channel="cinemagratis"       , language="IT"    , category="F"       , type="generic"     ,thumbnail="http://cinemagratis.org/wp-content/uploads/2015/05/cinemagratisimmagine.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] FilmSubito (IT)"          , channel="filmsubitotv"           , language="IT"    , category="F,S,A"   , type="generic"  ,thumbnail="http://i.imgur.com/4x1V7dZ.png" ))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] HubberFilm (IT)"        , channel="hubberfilm"       , language="IT"    , category="F,S"       , type="generic"     ,thumbnail="https://lh3.googleusercontent.com/-1GctnWIK15c/Ut50orGAIfI/AAAAAAAAACc/OATQdeKNoPg/s630-fcrop64=1,00000000ffffe786/1148930_614844365216006_1783180772_n.jpg"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Film Gratis cc (IT)"        , channel="filmgratiscc"       , language="IT"    , category="F"       , type="generic"     ,thumbnail="http://filmgratis.cc/wp-content/uploads/2014/06/logofilmgratis.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Cineblogfm (IT)"        , channel="cineblogfm"       , language="IT"    , category="F,S"       , type="generic"     ,thumbnail="http://www.cineblog01.fm/templates/KinoView/images/logo.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Eurostreaming (IT)"        , channel="eurostreaming"       , language="IT"    , category="F,S"       , type="generic"     ,thumbnail="http://eurostreaming.tv/wp-content/uploads/2014/03/logo2.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Guardaserie (IT)"          , channel="guardaserie"         , language="IT" , category="S"        , type="generic" , extra="Series" ,thumbnail="http://www.guardaserie.net/wp-content/themes/guardaserie/images/new_logo.png"))
+    itemlist.append( Item( title="Serie TV Sub ITA (IT)"          , channel="serietvsubita"         , language="IT" , category="S"        , type="generic" , extra="Series" ,thumbnail="https://i.imgur.com/jufYUPM.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Italiaserie (IT)"          , channel="italiaserie"         , language="IT" , category="S"        , type="generic" , extra="Series" ,thumbnail="http://www.italiaserie.com/wp-content/uploads/2015/03/logo.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] ItaFilm.tv (IT)"      , channel="itafilmtv"           , language="IT"    , category="F,S,A,D"   , type="generic"  ,thumbnail="http://www.itafilm.tv/templates/monsterfilm/images/logo.png"   ))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Tantifilm (IT)"        , channel="tantifilm"       , language="IT"    , category="F"       , type="generic"     ,thumbnail="http://www.tantifilm.net/wp-content/themes/smashingMultiMediaBrown/images/logo.png"))
+    itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Liberostreaming (IT)"          , channel="liberostreaming"         , language="IT" , category="F,S,A"        , type="generic", thumbnail="http://www.liberostreaming.org/wp-content/uploads/2015/01/cooltext1859870362.png"))
+    itemlist.append( Item( title="[COLOR red][DEV][/COLOR] Altadefinizione.click (IT)"          , channel="altadefinizioneclick"         , language="IT" , category="F,S,A"        , type="generic", thumbnail="http://i.imgur.com/FSHW6Zx.png"))
+    itemlist.append( Item( title="[COLOR red][DEV][/COLOR] ItaStreaming (IT)"          , channel="itastreaming"         , language="IT" , category="F,S,A"        , type="generic", thumbnail="http://itastreaming.co/wp-content/uploads/2015/08/logo.png"))
+    itemlist.append( Item( title="[COLOR red][DEV][/COLOR] Ildocumento (IT)"          , channel="ildocumento"         , language="IT" , category="F,D"        , type="generic" , extra="Series" ,thumbnail="http://ildocumento.it/ildocumento-social.jpg"))
+    itemlist.append( Item( title="[COLOR red][DEV][/COLOR] Documentaristreaming (IT)"          , channel="documentaristreaming"         , language="IT" , category="F,D"        , type="generic" , extra="Series" ,thumbnail="http://tvstreamingonline.org/images/IMG/documentari%20streaming.jpg"))
+    itemlist.append( Item( title="[COLOR red][DEV][/COLOR] Documoo (IT)"          , channel="documoo"         , language="IT" , category="F,D"        , type="generic" , extra="Series" ,thumbnail="http://www.documoo.tv/wp-content/uploads/logo_documoo.jpg"))
+##### End ITALIAN CHANNELS ######
 
-    #itemlist.append( Item( title="Biblioteca XBMC"       , channel="libreria"             , language=""      , category="F,S,D,A" , type="wiimc"    ))
-    #itemlist.append( Item( title="Cine-online.eu"        , channel="cineonlineeu"         , language="ES" , category="F" , type="generic"    )) # jesus 16/7/2012
-    #itemlist.append( Item( title="Cinegratis"            , channel="cinegratis"           , language="ES"    , category="F" , type="generic"  ))
-    #itemlist.append( Item( title="Cinetube"              , channel="cinetube"             , language="ES"    , category="F,S,A,D,VOS" , type="generic"  ))
-    #itemlist.append( Item( title="Cinemastreaming (IT)"  , channel="cinemastreaming"      , language="IT" , category="F,S,A" , type="generic"  )) # jesus 5/11/2012
-    #itemlist.append( Item( title="CineVOS"               , channel="cinevos"             , language="ES"    , category="F,A,D,VOS" , type="generic"  ))
-    #itemlist.append( Item( title="dibujosanimadosgratis" , channel="dibujosanimadosgratis", language="ES"    , category="A"       , type="generic"  ))
-    #itemlist.append( Item( title="Descargaya"           , channel="descargaya"          , language="ES"    , category="F,S"       , type="generic"  ))
-    #itemlist.append( Item( title="Divx Online"           , channel="divxonline"           , language="ES"    , category="F"       , type="generic"  ))
-    #itemlist.append( Item( title="DL-More (FR)"          , channel="dlmore"               , language="FR"    , category="S"       , type="generic"  ))
-    #itemlist.append( Item( title="Enlacia"               , channel="enlacia"              , language="ES"    , category="F,S,D"       , type="generic"  ))
-    # DESACTIVADO - SIN CONTENIDOS itemlist.append( Item( title="Filmixt"               , channel="filmixt"              , language="ES"    , category="F"       , type="generic"  ))
-    #itemlist.append( Item( title="FilmesOnlineBr"        , channel="filmesonlinebr"       , language="PT"    , category="F"       , type="generic"     ))
-    #itemlist.append( Item( title="Filmenoi (RO)"        , channel="filmenoi"       , language="RU"    , category="F"       , type="generic"     ))
-    #if config.get_setting("enableadultmode") == "true": itemlist.append( Item( title="Gaypornshare"             , channel="gaypornshare"            , language="ES" , category="F" , type="generic"  ))
-    #itemlist.append( Item( title="Goear"                   , channel="goear"                , language="ES" , category="M" , type="generic"  )) # vcalvo 15/12/2011
-    #itemlist.append( Item( title="Instreaming (IT)" , channel="instreaming"          , language="IT"    , category="F,S"       , type="generic"  )) 
-    #itemlist.append( Item( title="Internapoli City (IT)" , channel="internapoli"          , language="IT"    , category="F"       , type="generic"  )) 
-    #itemlist.append( Item( title="Justin.tv"              , channel="justintv"            , language=""      , category="G"       , type="generic"  ))
-    #itemlist.append( Item( title="La Guarida de bizzente", channel="documentalesatonline2", language="ES"    , category="D"       , type="generic"  ))
-    #itemlist.append( Item( title="LetMeWatchThis"        , channel="letmewatchthis"       , language="EN"    , category="F,S,VOS"     , type="generic"  ))
-    #itemlist.append( Item( title="lossimpsonsonline.com.ar", channel="los_simpsons_online"       , language="ES"    , category="S"     , type="generic"  ))
-    #itemlist.append( Item( title="Malvin.tv"               , channel="malvin"              , language="ES"    , category="F,D"       , type="generic"  ))
-    #itemlist.append( Item( title="Megapass"               , channel="megapass"             , language="ES"    , category="F,S,D"       , type="generic"  ))
-    #itemlist.append( Item( title="MCAnime"               , channel="mcanime"              , language="ES"    , category="A"       , type="generic"  ))
-    #itemlist.append( Item( title="Moviepremium"          , channel="moviepremium"             , language="ES"    , category="F"     , type="generic" )) # yorel 04/08/2013
-    #itemlist.append( Item( title="Moviezet"              , channel="moviezet"             , language="ES"    , category="F,S,VOS"     , type="generic" )) # mrfluffy 01/10/2011
-    #if config.get_setting("enableadultmode") == "true": itemlist.append( Item( title="myhentaitube"         , channel="myhentaitube"         , language="ES" , category="F" , type="generic"  ))
-    #itemlist.append( Item( title="NewDivx"               , channel="newdivx"              , language="ES"    , category="F,D"     , type="generic"  ))
-    #itemlist.append( Item( title="Newdivxonline"         , channel="newdivxonline"              , language="ES"    , category="F"     , type="generic"  ))
-    #itemlist.append( Item( title="NewHD"                 , channel="newhd"                , language="ES"    , category="F,VOS"       , type="generic" )) # xextil 05/05/2011
-    #itemlist.append( Item( title="Novelas de TV"          , channel="novelasdetv", language="ES" , category="S" , type="generic"  )) # jesus 12/11/2012   
-    #itemlist.append( Item( title="Nukety"                 , channel="nukety"          , language="ES"    , category="F,S"       , type="generic"  )) 
-    #itemlist.append( Item( title="NKI"                   , channel="nki"                  , language="ES"    , category="S"       , type="generic" ))
-    #itemlist.append( Item( title="No Megavideo"          , channel="nomegavideo"          , language="ES"    , category="F"       , type="xbmc"  ))
-    # DESACTIVADO - SIN CONTENIDOS itemlist.append( Item( title="NoloMires"             , channel="nolomires"            , language="ES"    , category="F"       , type="xbmc"  ))
-    #itemlist.append( Item( title="Peliculas Online FLV"  , channel="peliculasonlineflv"   , language="ES"    , category="F,D"     , type="generic"  ))
-    # DESACTIVADO - SIN CONTENIDOS itemlist.append( Item( title="Peliculas21"           , channel="peliculas21"          , language="ES"    , category="F"       , type="xbmc"  ))
-    #itemlist.append( Item( title="Peliculamos (IT)"      , channel="peliculamos"          , language="IT" , category="F,S,A" , type="generic"  )) # jesus 5/11/2012
-    #itemlist.append( Item( title="peliculashd.pro"       , channel="peliculashdpro"       , language="ES" , category="F" , type="generic"  )) # jesus 12/11/2012
-    #itemlist.append( Item( title="Peliculasfull"         , channel="peliculasfull"          , language="ES"    , category="F"       , type="generic"  ))
-    #itemlist.append( Item( title="Peliculasid"           , channel="peliculasid"          , language="ES"    , category="F,VOS"       , type="xbmc"  ))
-    #itemlist.append( Item( title="Peliculaspepito"       , channel="peliculaspepito" , language="ES"    , category="F"   , type="generic" ))
-    #itemlist.append( Item( title="Peliculasyonkis"       , channel="peliculasyonkis_generico" , language="ES"    , category="F,VOS"   , type="generic" ))
-    #if config.get_setting("enableadultmode") == "true": itemlist.append( Item( title="PelisX"               , channel="pelisx"          , language="ES"    , category="F"       , type="generic"  )) # ZeDinis 01/02/2013
-    #itemlist.append( Item( title="Playmax"               , channel="playmax"      , language="ES" , category="F,S" , type="generic"    )) # jesus 16/7/2012
-    #itemlist.append( Item( title="PelisFlv"              , channel="pelisflv"             , language="ES" , category="F"          , type="xbmc"  ))
-    # YA NO EXISTE itemlist.append( Item( title="Redes.tv"              , channel="redestv"              , language="ES" , category="D"          , type="xbmc"  ))
-    #itemlist.append( Item( title="Seriematic"            , channel="seriematic"           , language="ES" , category="S,D,A"      , type="generic"  ))
-    #itemlist.append( Item( title="Serieonline"           , channel="serieonline"          , language="ES" , category="F,S,D"      , type="generic"  ))
-    #itemlist.append( Item( title="Series ID"             , channel="seriesid"             , language="ES" , category="S,VOS" , type="generic"  )) # vcalvo 15/12/2011
-    #if config.get_setting("enableadultmode") == "true": itemlist.append( Item( title="Series Hentai"         , channel="serieshentai"         , language="ES" , category="F" , type="generic"  )) # kira 10/04/2011
-    # DESACTIVADO - SIN CONTENIDO itemlist.append( Item( title="Series21"              , channel="series21"             , language="ES" , category="S"          , type="xbmc"  ))
-    #itemlist.append( Item( title="Series Online TV"     , channel="seriesonlinetv", language="ES" , category="S" , type="generic"  )) # jesus 12/11/2012
-    #itemlist.append( Item( title="Seriespepito"          , channel="seriespepito"         , language="ES" , category="S,VOS"          , type="generic" ))
-    #itemlist.append( Item( title="ShurHD"       , channel="shurhd"             , language="ES"      , category="F,S" , type="generic"    ))
-    #itemlist.append( Item( title="Sintonizzate"       , channel="sintonizzate"             , language="ES"      , category="F,S,D,A" , type="generic"    ))
-    #itemlist.append( Item( title="Sipeliculas"       , channel="sipeliculas"             , language="ES"      , category="F" , type="generic"    )) # miguel 2/3/2012
-    #itemlist.append( Item( title="Sofacine"              , channel="sofacine"             , language="ES" , category="F"          , type="generic"  ))
-    #itemlist.append( Item( title="Sonolatino"            , channel="sonolatino"           , language=""   , category="M"          , type="xbmc"  ))
-    #itemlist.append( Item( title="Stagevu"               , channel="stagevusite"          , language=""   , category="G"          , type="xbmc"  ))
-    #itemlist.append( Item( title="Stormtv"          , channel="stormtv"         , language="ES" , category="S,A,VOS"        , type="generic" , extra="Series" )) 
-    #itemlist.append( Item( title="Tibimate"      , channel="tibimate"     , language="ES" , category="F"          , type="generic" )) # mrfloffy 19/10/2011
-    #itemlist.append( Item( title="Terror y Gore"         , channel="terrorygore"          , language="ES,EN" , category="F"       , type="xbmc"  ))
-    #if config.get_setting("enableadultmode") == "true": itemlist.append( Item( title="Tube8"                 , channel="tube8"                , language="EN" , category="G"          , type="generic" ))
-    #itemlist.append( Item( title="tu.tv"                 , channel="tutvsite"             , language="ES" , category="G"          , type="generic" ))
-    #itemlist.append( Item( title="Tu butaka de cine"     , channel="tubutakadecine"       , language="ES" , category="F"        , type="generic" ))
-    #itemlist.append( Item( title="Tu Mejor TV"         , channel="tumejortv"            , language="ES" , category="F,S"        , type="generic" ))
-    #itemlist.append( Item( title="TVShack"               , channel="tvshack"              , language="EN" , category="F,S,A,D,M"  , type="xbmc"  ))
-    #itemlist.append( Item( title="Vagos"                 , channel="vagos"                , language="ES" , category="F,S" , type="xbmc"  ))
-    #itemlist.append( Item( title="Veocine"               , channel="veocine"              , language="ES" , category="F,A,D" , type="xbmc"  ))
-    #itemlist.append( Item( title="Ver-anime"             , channel="veranime"             , language="ES" , category="A" , type="generic"  ))
-    #itemlist.append( Item( title="Ver-series"            , channel="verseries"            , language="ES" , category="S" , type="generic"  )) # 15/12/2011 jesus
-    #itemlist.append( Item( title="Vox filme online (RO)", channel="voxfilme" , language="RU" , category="S" , type="generic"  ))
-    #itemlist.append( Item( title="Watchanimeon"          , channel="watchanimeon"         , language="EN" , category="A" , type="xbmc"  ))
-    #itemlist.append( Item( title="Watch Cartoon Online"  , channel="watchcartoononline"   , language="EN" , category="F,S", type="generic" )) # jesus 23/11/2012
-    #itemlist.append( Item( title="XO (RO)"  , channel="xo"   , language="RU" , category="F,S", type="generic" )) # jesus 23/11/2012
-    #itemlist.append( Item( title="Yotix"                 , channel="yotix"                , language="ES" , category="A" , type="generic" ))
-    #itemlist.append( Item( title="Zate.tv"              , channel="zatetv"         , language="ES"    , category="F,S"       , type="generic"  ))
-    #itemlist.append( Item( title="Dospuntocerovision"    , channel="dospuntocerovision"   , language="ES" , category="F,S" , type="xbmc"  ))
-    #itemlist.append( Item( title="Pintadibujos"          , channel="pintadibujos"         , language="ES" , category="F,A" , type="xbmc"  ))
-    #itemlist.append( Item( title="Film Streaming"        , "filmstreaming"        , language="IT" , "F,A" , type="xbmc"  ))
-    #itemlist.append( Item( title="Pelis-Sevillista56"    , "sevillista"           , language="ES" , "F" , type="xbmc"))
-    #itemlist.append( Item( title="SoloSeries"            , "soloseries"           , language="ES" , "S" , type="xbmc"  ))
-    #itemlist.append( Item( title="seriesonline.us"       , "seriesonline"         , language="ES" , "S" , type="xbmc" ))
-    #itemlist.append( Item( title="Animetakus"            , channel="animetakus"           , language="ES" , category="A" , type="generic" ))
-    #itemlist.append( Item( title="Documentalesatonline"  , channel="documentalesatonline" , language="ES" , category="D" , type="xbmc"  ))
-    #itemlist.append( Item( title="Programas TV Online"   , channel="programastv"          , language="ES" , category="D" , type="xbmc"  ))
-    #itemlist.append( Item( title="Futbol Virtual"        , "futbolvirtual"        , language="ES" , "D" , type="xbmc"  ))
-    #channelslist.append([ "Eduman Movies" , "edumanmovies" , "" , "ES" , "F" ])
-    #channelslist.append([ "SesionVIP" , "sesionvip" , "" , "ES" , "F" ])
-    #channelslist.append([ "Newcineonline" , "newcineonline" , "" , "ES" , "S" ])
-    #channelslist.append([ "PeliculasHD" , "peliculashd" , "" , "ES" , "F" ])
-    #channelslist.append([ "Wuapi" , "wuapisite" , "" , "ES" , "F" ])
-    #channelslist.append([ "Frozen Layer" , "frozenlayer" , "" , "ES" , "A" ])
-    #channelslist.append([ "Ovasid"                , "ovasid"               , "" , "ES" , "A" , "xbmc"  ])
     return itemlist
 
 def addfolder(nombre,channelname,accion,category="",thumbnailname="",thumbnail="",folder=True):
