@@ -272,7 +272,7 @@ def channels_list():
     itemlist.append( Item( title="Series.ly"               , channel="seriesly"           , language="ES" , category="F,S,A,VOS"        , type="generic"  ))
     itemlist.append( Item( title="SeriesMu"                , channel="seriesmu"           , language="ES" , category="F,S,A,VOS"   , type="generic",  thumbnail="http://s17.postimg.org/jcasctj0v/smlogo.jpg"  ))
     itemlist.append( Item( title="Seriesyonkis"            , channel="seriesyonkis"       , language="ES" , category="S,A,VOS"        , type="generic" , extra="Series" ))
-    itemlist.append( Item( title="Serie TV Sub ITA"        , channel="serietvsubita"      , language="IT" , category="S"        , type="generic" , extra="Series" ))
+    #itemlist.append( Item( title="Serie TV Sub ITA"        , channel="serietvsubita"      , language="IT" , category="S"        , type="generic" , extra="Series" ))
     if config.get_setting("enableadultmode") == "true": itemlist.append( Item( title="Serviporno", channel="serviporno"          , language="ES" , category="X,F" , type="generic"    ))
     itemlist.append( Item( title="Shurweb"                 , channel="shurweb"            , language="ES" , category="F,S,D,A" , type="generic"    ))
     itemlist.append( Item( title="Sinluces"                , channel="sinluces"           , language="ES" , category="F" , type="generic" , thumbnail="http://s14.postimg.org/cszkmr7a9/sinluceslogo.jpg"   ))
