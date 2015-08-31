@@ -5,8 +5,10 @@
 # http://blog.tvalacarta.info/plugin-xbmc/pelisalacarta/
 #------------------------------------------------------------
 import urlparse,urllib2,urllib,re
-import os,sys
- 
+import os
+import sys
+import re, htmlentitydefs
+
 from core import logger
 from core import config
 from core import scrapertools
@@ -16,7 +18,7 @@ from servers import servertools
 __channel__ = "italiafilm"
 __category__ = "F,S,A"
 __type__ = "generic"
-__title__ = "Italia film (IT)"
+__title__ = "Italia-Film.co"
 __language__ = "IT"
 
 DEBUG = True #config.get_setting("debug")
@@ -26,10 +28,13 @@ def isGeneric():
     return True
 
 def mainlist(item):
-    logger.info("[gnula.py] mainlist")
+    logger.info("[italiafilm.py] mainlist")
     itemlist = []
-    itemlist.append( Item(channel=__channel__, title="Categorie" , action="categorias", url="http://www.italia-film.org/film-in-streaming/"))
-    itemlist.append( Item(channel=__channel__, title="Cerca Film", action="search"))
+    itemlist.append( Item(channel=__channel__, title="[COLOR azure]Film - Novita'[/COLOR]" , action="peliculas", url="http://www.italia-film.co/category/film-del-2015-streaming/",thumbnail="http://dc584.4shared.com/img/XImgcB94/s7/13feaf0b538/saquinho_de_pipoca_01"))
+    itemlist.append( Item(channel=__channel__, title="[COLOR azure]Serie TV[/COLOR]" , action="peliculas", url="http://www.italia-film.co/category/telefilm/", thumbnail="http://xbmc-repo-ackbarr.googlecode.com/svn/trunk/dev/skin.cirrus%20extended%20v2/extras/moviegenres/New%20TV%20Shows.png"))
+    itemlist.append( Item(channel=__channel__, title="[COLOR azure]Anime e Cartoon[/COLOR]" , action="peliculas", url="http://www.italia-film.co/category/anime-e-cartoon/", thumbnail="http://orig09.deviantart.net/df5a/f/2014/169/2/a/fist_of_the_north_star_folder_icon_by_minacsky_saya-d7mq8c8.png"))
+    itemlist.append( Item(channel=__channel__, title="[COLOR azure]Contenuti per Genere[/COLOR]" , action="categorias", url="http://www.italia-film.co/", thumbnail="http://xbmc-repo-ackbarr.googlecode.com/svn/trunk/dev/skin.cirrus%20extended%20v2/extras/moviegenres/All%20Movies%20by%20Genre.png"))
+    itemlist.append( Item(channel=__channel__, title="[COLOR yellow]Cerca...[/COLOR]" , action="search", thumbnail="http://dc467.4shared.com/img/fEbJqOum/s7/13feaf0c8c0/Search"))
     return itemlist
 
 def categorias(item):
@@ -38,20 +43,9 @@ def categorias(item):
     logger.error("io")
 
     data = scrapertools.cache_page(item.url)
-
-    '''
-    <a href="#">Categorie</a>
-    <ul class="sub-menu">
-    <li id="menu-item-22311" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22311"><a href="http://www.italiafilms.tv/archivio-alfabetico-film-e-serie-tv/">Archivio alfabetico</a></li>
-    <li id="menu-item-21089" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-21089"><a href="http://www.italiafilms.tv/category/now-on-cinema/">Adesso Nei Cinema</a></li>
-    <li id="menu-item-21090" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-21090"><a href="http://www.italiafilms.tv/category/anime-e-cartoon/">Anime e Cartoon</a></li>
-    <li id="menu-item-21091" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-21091"><a href="http://www.italiafilms.tv/category/archivio-film/">Archivio Film</a></li>
-    <li id="menu-item-21092" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-21092"><a href="http://www.italiafilms.tv/category/film-animazione/">Film Animazione</a></li>
-    '''
-
     data = scrapertools.find_single_match(data,'<a href=".">Categorie</a>(.*?)</div>')
-    patron = '<li class="[^"]+"><a href="([^"]+)">([^<]+)</a></li>'
 
+    patron = '<li class="[^"]+"><a href="([^"]+)">([^<]+)</a></li>'
     patron = '<li[^>]+><a href="([^"]+)">([^<]+)</a></li>'
     matches = re.compile(patron,re.DOTALL).findall(data)
     scrapertools.printMatches(matches)
@@ -62,21 +56,19 @@ def categorias(item):
         scrapedplot = ""
         scrapedthumbnail = ""
         if DEBUG: logger.info("title=["+scrapedtitle+"], url=["+scrapedurl+"], thumbnail=["+scrapedthumbnail+"]")
-        itemlist.append( Item(channel=__channel__, action='peliculas', title=scrapedtitle , url=scrapedurl , thumbnail=scrapedthumbnail , plot=scrapedplot , folder=True) )
+        itemlist.append( Item(channel=__channel__, action='peliculas', title="[COLOR azure]" + scrapedtitle + "[/COLOR]", url=scrapedurl , thumbnail=scrapedthumbnail , plot=scrapedplot , folder=True) )
 
     return itemlist
 
-# Al llamarse "search" la función, el launcher pide un texto a buscar y lo añade como parámetro
 def search(item,texto):
     logger.info("[italiafilm.py] search "+texto)
     itemlist = []
     texto = texto.replace(" ","%20")
-    item.url = "http://italiafilm.tv/?s="+texto
-    #item.extra = "s="+texto
+    item.url = "http://www.italia-film.co/?s="+texto
 
     try:
         return peliculas(item)
-    # Se captura la excepción, para no interrumpir al buscador global si un canal falla
+    # Se captura la excepcion, para no interrumpir al buscador global si un canal falla
     except:
         import sys
         for line in sys.exc_info():
@@ -97,30 +89,32 @@ def peliculas(item):
         title = scrapertools.find_single_match(match,'<h3[^<]+<a href="[^"]+"[^<]+>([^<]+)</a>')
         title = scrapertools.htmlclean(title).strip()
         url = scrapertools.find_single_match(match,'<h3[^<]+<a href="([^"]+)"')
-        plot = scrapertools.find_single_match(match,'<p class="summary">(.*?)</p>')
-        plot = scrapertools.htmlclean(plot).strip()
+        html = scrapertools.cache_page(url)
+        start = html.find("<p><br/>")
+        end = html.find("</h2>", start)
+        plot = html[start:end]
+        plot = re.sub(r'<[^>]*>', '', plot)
+        plot = scrapertools.decodeHtmlentities(plot)
         thumbnail = scrapertools.find_single_match(match,'data-echo="([^"]+)"')
 
         if (DEBUG): logger.info("title=["+title+"], url=["+url+"], thumbnail=["+thumbnail+"]")
 
-        # Añade al listado de XBMC
-        itemlist.append( Item(channel=__channel__, action='findvideos', title=title , url=url , thumbnail=thumbnail , fanart=thumbnail, plot=plot , viewmode="movie_with_plot", folder=True) )
+        itemlist.append( Item(channel=__channel__, action='findvideos', title="[COLOR azure]" + title + "[/COLOR]", url=url , thumbnail=thumbnail , fanart=thumbnail, plot=plot , viewmode="movie_with_plot", folder=True) )
 
     # Siguiente
     try:
         pagina_siguiente = scrapertools.get_match(data,'<a class="next page-numbers" href="([^"]+)"')
-        itemlist.append( Item(channel=__channel__, action="peliculas", title=">> Pagina seguente" , url=pagina_siguiente , folder=True) )
+        itemlist.append( Item(channel=__channel__, action="peliculas", title="[COLOR orange]Successivo >> [/COLOR]" , url=pagina_siguiente , thumbnail="http://2.bp.blogspot.com/-fE9tzwmjaeQ/UcM2apxDtjI/AAAAAAAAeeg/WKSGM2TADLM/s1600/pager+old.png", folder=True) )
     except:
         pass
 
     return itemlist
 
-# Verificación automática de canales: Esta función debe devolver "True" si está ok el canal.
 def test():
     from servers import servertools
     # mainlist
     mainlist_items = mainlist(Item())
-    # Da por bueno el canal si alguno de los vídeos de "Novedades" devuelve mirrors
+    # Da por bueno el canal si alguno de los v�deos de "Novedades" devuelve mirrors
     peliculas_items = peliculas(mainlist_items[0])
     bien = False
     for pelicula_item in peliculas_items:

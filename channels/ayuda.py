@@ -23,15 +23,15 @@ def mainlist(item):
     platform_name = config.get_platform()
     cuantos = 0
     if "kodi" in platform_name or platform_name=="xbmceden" or platform_name=="xbmcfrodo" or platform_name=="xbmcgotham":
-        itemlist.append( Item(channel=CHANNELNAME, action="force_creation_advancedsettings" , title="Crear fichero advancedsettings.xml optimizado"))
+        itemlist.append( Item(channel=CHANNELNAME, action="force_creation_advancedsettings" , title="Crea file advancedsettings.xml ottimizzato"))
         cuantos = cuantos + 1
         
     if "kodi" in platform_name or "xbmc" in platform_name or "boxee" in platform_name:
-        itemlist.append( Item(channel=CHANNELNAME, action="updatebiblio" , title="Buscar nuevos episodios y actualizar biblioteca"))
+        itemlist.append( Item(channel=CHANNELNAME, action="updatebiblio" , title="Cerca nuovi episodi e aggiorna la biblioteca"))
         cuantos = cuantos + 1
 
     if cuantos>0:
-        itemlist.append( Item(channel=CHANNELNAME, action="tutoriales" , title="Ver guías y tutoriales en vídeo"))
+        itemlist.append( Item(channel=CHANNELNAME, action="tutoriales" , title="Vedere video per guide e tutorial"))
     else:
         itemlist.extend(tutoriales(item))
 
@@ -59,7 +59,7 @@ def force_creation_advancedsettings(item):
     fichero.close()
                 
     dialog2 = xbmcgui.Dialog()
-    dialog2.ok("plugin", "Se ha creado un fichero advancedsettings.xml","con la configuración óptima para el streaming.")
+    dialog2.ok("plugin", "E' stato creato un file advancedsettings.xml","con la configurazione ideale per lo streaming.")
 
     return []
 
@@ -67,7 +67,7 @@ def updatebiblio(item):
     import library_service
     
     itemlist = []
-    itemlist.append( Item(channel=CHANNELNAME, action="" , title="Actualizacion en curso..."))
+    itemlist.append( Item(channel=CHANNELNAME, action="" , title="Aggiornamenti in corso..."))
     
     return itemlist
 
