@@ -1,63 +1,51 @@
 # -*- coding: utf-8 -*-
-#------------------------------------------------------------
+# ------------------------------------------------------------
 # pelisalacarta - XBMC Plugin
-# Conector para Google Video basado en flashvideodownloader.org
+# Conector para Google Video
 # http://blog.tvalacarta.info/plugin-xbmc/pelisalacarta/
-#------------------------------------------------------------
+# ------------------------------------------------------------
+# modify by DrZ3r0
 
 import os
-import urlparse,urllib2,urllib,re
+import urlparse, urllib2, urllib, re
 
 from core import scrapertools
 from core import logger
 from core import config
 
+
 # Returns an array of possible video url's from the page_url
-def get_video_url( page_url , premium = False , user="" , password="", video_password="" ):
+def get_video_url(page_url, premium=False, user="", password="", video_password=""):
     logger.info("[googlevideo.py] get_video_url(page_url='%s')" % page_url)
 
-    video_urls = []
+    print page_url
 
-    # Lo extrae a partir de flashvideodownloader.org
-    if page_url.startswith("http://"):
-        url = 'http://www.flashvideodownloader.org/download.php?u='+page_url
-    else:
-        url = 'http://www.flashvideodownloader.org/download.php?u=http://video.google.com/videoplay?docid='+page_url
-    logger.info("[googlevideo.py] url="+url)
-    data = scrapertools.cache_page(url)
-    
-    # Extrae el vídeo
-    newpatron = '</script>.*?<a href="(.*?)" title="Click to Download">'
-    newmatches = re.compile(newpatron,re.DOTALL).findall(data)
-    if len(newmatches)>0:
-        video_urls.append( ["[googlevideo]",newmatches[0]] )
+    video_urls = [["[googlevideo]", page_url]]
 
     for video_url in video_urls:
-        logger.info("[googlevideo.py] %s - %s" % (video_url[0],video_url[1]))
+        logger.info("[googlevideo.py] %s - %s" % (video_url[0], video_url[1]))
 
     return video_urls
 
-# Encuentra vídeos del servidor en el texto pasado
+
+# Encuentra vï¿½deos del servidor en el texto pasado
 def find_videos(data):
     encontrados = set()
     devuelve = []
-    patronvideos = 'http://video.google.com/googleplayer.swf.*?docid=([0-9]+)'
-    logger.info("[googlevideo.py] find_videos #"+patronvideos+"#")
-    matches = re.compile(patronvideos,re.DOTALL).findall(data)
+
+    patronvideos = r"""(https?://(?:redirector\.)?googlevideo.com/[^"']+)(?:",\s*"label":\s*([0-9]+),)?"""
+    logger.info("[googlevideo.py] find_videos #" + patronvideos + "#")
+    matches = re.compile(patronvideos, re.DOTALL).finditer(data)
 
     for match in matches:
-        titulo = "[googlevideo]"
-        if match.count("&")>0:
-            primera = match.find("&")
-            url = match[:primera]
-        else:
-            url = match
+        titulo = "[googlevideo]" if match.group(2) is None else "[googlevideo %s]" % match.group(2)
+        url = match.group(1)
 
         if url not in encontrados:
-            logger.info("  url="+url)
-            devuelve.append( [ titulo , url , 'googlevideo' ] )
+            logger.info("  url=" + url)
+            devuelve.append([titulo, url, 'googlevideo'])
             encontrados.add(url)
         else:
-            logger.info("  url duplicada="+url)
+            logger.info("  url duplicada=" + url)
 
     return devuelve

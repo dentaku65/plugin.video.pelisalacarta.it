@@ -18,19 +18,18 @@ from core import logger
 # Lista de los servidores que se pueden ver sin cuenta premium de ningún tipo
 FREE_SERVERS = []
 FREE_SERVERS.extend(['directo','allmyvideos','adnstream','bliptv','divxstage','facebook','fourshared', 'hulkshare', 'twitvid'])
-FREE_SERVERS.extend(['googlevideo','mediafire','moevideos','movshare','novamov'])
-FREE_SERVERS.extend(['royalvids','sockshare','stagevu','tutv','userporn','veoh','videobam'])
-FREE_SERVERS.extend(['vidbux','videoweed','vimeo','vk','watchfreeinhd','youtube'])
-FREE_SERVERS.extend(['jumbofiles','nowvideo','streamcloud', 'zinwa', 'dailymotion','justintv', 'vidbull'])
+FREE_SERVERS.extend(['googlevideo','gigabyteupload','mediafire','moevideos','movshare','novamov']) #,'putlocker'
+FREE_SERVERS.extend(['royalvids','sockshare','stagevu','tutv','userporn','veoh','videobam','vidtome'])
+FREE_SERVERS.extend(['vidbux','fastvideo','videoweed','vimeo','rapidvideo','vk','watchfreeinhd','youtube'])#,'videobeer','nowdownload'
+FREE_SERVERS.extend(['jumbofiles','nowvideo','nowvideoli','videowood','streamcloud', 'zinwa', 'dailymotion','justintv', 'vidbull'])
 FREE_SERVERS.extend(['vureel','nosvideo','videopremium','movreel','flashx','upafile'])
 FREE_SERVERS.extend(['fileflyer','playedto','tunepk','powvideo','videomega','mega','vidspot','netutv','rutube'])
-FREE_SERVERS.extend(['videozed','documentary','hugefiles', 'firedrive','videott','tumitv','gamovideo'])
-FREE_SERVERS.extend(['torrent','video4you','mailru','streaminto','backin','akstream', 'speedvideo', 'junkyvideo', 'rapidvideo', 'realvid', 'cloudzilla', 'fakingstv'])
-FREE_SERVERS.extend(['meuvideos', 'cumlouder','v4y','streamable','videostoring','youwatch'])
-FREE_SERVERS.extend(['vodlocker','thevideome','rocvideo','vidxtreme','vidtome','vidzi','letwatch','sendvid']) #,'vimpleru'])
+FREE_SERVERS.extend(['videozed','documentary','hugefiles','firedrive','videott','tumitv','gamovideo'])
+FREE_SERVERS.extend(['torrent','video4you','mailru','streaminto','backin','akstream','speedvideo','junkyvideo','realvid','cloudzilla','fakingstv'])
+FREE_SERVERS.extend(['meuvideos','cumlouder','openload', 'abysstream', 'megahd', 'exashare', 'okru', 'youwatch', 'publicvideohost', 'spruto'])
 
 # Lista de TODOS los servidores que funcionan con cuenta premium individual
-PREMIUM_SERVERS = ['uploadedto','nowvideo','onefichier']
+PREMIUM_SERVERS = ['uploadedto','nowvideo']
 
 # Lista de TODOS los servidores soportados por Filenium
 #FILENIUM_SERVERS = jsontools.load_json(urllib2.urlopen('http://filenium.com/domainsxbmc'))
@@ -38,7 +37,7 @@ FILENIUM_SERVERS = []
 FILENIUM_SERVERS.extend(["nitroflare","lolabits","1fichier","dl","dl","mega","allmyvideos","allmyvideos","cliphunter","dailymotion","divxstage","facebook","filefactory","filepost","filesmonster","firedrive","gigasize","justin","k2s","keep2share","keep2share","letitbit","mediafire","metacafe","mitele","moevideos","netload","nowvideo","nowvideo","nowvideo","oboom","played","pornhub","rapidgator","rg","shareflare","streamcloud","turbobit","uploadable","uploaded","uploaded","ul","userporn","videoweed","vidspot","vimeo","vk","xenubox","youngpornvideos","youtube","zippyshare","lix","safelinking","linkto","2shared","4shared","hugefiles","nowdownload","nowdownload","tusfiles","uploading","uptobox"]);
 
 # Lista de TODOS los servidores soportados por Real-Debrid
-REALDEBRID_SERVERS = ['one80upload','tenupload','onefichier','onehostclick','twoshared','fourfastfile','fourshared','abc','asfile','badongo','bitshare','cbscom','cloudzer','cramit','crocko','cwtv','dailymotion','dateito',
+REALDEBRID_SERVERS = ['one80upload','tenupload','onefichier','onehostclick','twoshared','fourfastfile','fourshared','abc','asfile','badongo','bayfiles','bitshare','cbscom','cloudzer','cramit','crocko','cwtv','dailymotion','dateito',
                     'dengee','diglo','extabit','fiberupload','filedino','filefactory','fileflyer','filekeen','filemade','filemates','fileover','filepost',
                    'filesend','filesmonster','filevelocity','freakshare','free','furk','fyels','gigasize','gigaup','glumbouploads','goldfile','hitfile','hipfile','hostingbulk',
                    'hotfile','hulkshare','hulu','ifile','jakfile','jumbofiles','justintv','letitbit','loadto','mediafire','mega','megashare','megashares','mixturevideo','muchshare','netload',
@@ -47,7 +46,7 @@ REALDEBRID_SERVERS = ['one80upload','tenupload','onefichier','onehostclick','two
                    'userporn','veevr','vidbux','vidhog','vidxden','vimeo','vipfile','wattv','xfileshare','youporn','youtube','yunfile','zippyshare','justintv','nowvideo','ultramegabit','filesmonster','oboom']
 #wupload,fileserve
 
-ALLDEBRID_SERVERS = ['one80upload','onefichier','twoshared','fourfastfile','fourshared','albafile','bitshare','cloudzer','cramit','crocko','cyberlocker','dailymotion','dengee',
+ALLDEBRID_SERVERS = ['one80upload','onefichier','twoshared','fourfastfile','fourshared','albafile','bayfiles','bitshare','cloudzer','cramit','crocko','cyberlocker','dailymotion','dengee',
                    'depfile','dlfree','extabit','extmatrix','filefactory','fileflyer','filegag','filehost','fileover','filepost','filerio','filesabc',
                    'filesend','filesmonster','filestay','freakshare','gigasize','hotfile','hulkshare','jumbofiles','letitbit','loadto','mediafire','megashares','mixturevideo','netload',
                    'nitrobits','oteupload','purevid','putlocker','rapidgator','rapidshare','redtube','scribd','secureupload','sharebees','shareflare','slingfile','sockshare',
@@ -60,15 +59,13 @@ ALLDEBRID_SERVERS = ['one80upload','onefichier','twoshared','fourfastfile','four
 
 # Lista de servidores activos en funcion de: Configuracion/Cuentas
 if config.get_setting("hidepremium")=="false":
-    ENABLED_SERVERS= list( set(FREE_SERVERS) | set(FILENIUM_SERVERS) | set(REALDEBRID_SERVERS) | set(ALLDEBRID_SERVERS) | set(PREMIUM_SERVERS) )
+    ENABLED_SERVERS= list( set(FREE_SERVERS) | set(FILENIUM_SERVERS) | set(REALDEBRID_SERVERS) | set(ALLDEBRID_SERVERS) )
 else:
     ENABLED_SERVERS= set(FREE_SERVERS)
     if config.get_setting("uploadedtopremium")=="true":
         ENABLED_SERVERS.add('uploadedto')
     if config.get_setting("nowvideopremium")=="true":
         ENABLED_SERVERS.add('nowvideo')
-    if config.get_setting("onefichierpremium")=="true":
-        ENABLED_SERVERS.add('onefichier')
     if config.get_setting("fileniumpremium")=="true":
         ENABLED_SERVERS= ENABLED_SERVERS | set(FILENIUM_SERVERS)
     if config.get_setting("realdebridpremium")=="true":
@@ -99,12 +96,11 @@ def find_video_items(item=None, data=None, channel=""):
 
     itemlist = []
     for video in listavideos:
-        scrapedtitle = "Enlace encontrado en "+video[2]
+        scrapedtitle = item.title.strip() + " - " + video[0].strip()
         scrapedurl = video[1]
         server = video[2]
-        thumbnail = "http://media.tvalacarta.info/servers/server_"+server+".png"
         
-        itemlist.append( Item(channel=item.channel, title=scrapedtitle , action="play" , server=server, page=item.page, url=scrapedurl, thumbnail=thumbnail, show=item.show , plot=item.plot , folder=False) )
+        itemlist.append( Item(channel=item.channel, title=scrapedtitle , action="play" , server=server, page=item.page, url=scrapedurl, thumbnail=item.thumbnail, show=item.show , plot=item.plot , folder=False) )
 
     return itemlist
 
@@ -116,18 +112,22 @@ def findvideosbyserver(data, serverid):
         exec "from servers import "+serverid
         exec "devuelve.extend("+serverid+".find_videos(data))"
     except ImportError:
-        logger.info("No existe conector para #"+serverid+"#")
-        #import traceback
-        #logger.info(traceback.format_exc())
+        logger.info("No existe conector para "+serverid)
     except:
-        logger.info("Error en el conector #"+serverid+"#")
-        import traceback
-        logger.info(traceback.format_exc())
+        logger.info("Error en el conector "+serverid)
+        import traceback,sys
+        from pprint import pprint
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        lines = traceback.format_exception(exc_type, exc_value, exc_tb)
+        for line in lines:
+            line_splits = line.split("\n")
+            for line_split in line_splits:
+                logger.error(line_split)
 
     return devuelve
 
 def findvideos(data):
-    logger.info("[servertools.py] findvideos") # en #"+data+"#")
+    logger.info("[servertools.py] findvideos")
     encontrados = set()
     devuelve = []
 
@@ -142,13 +142,17 @@ def findvideos(data):
             server_module = getattr(servers_module,serverid)
             devuelve.extend( server_module.find_videos(data) )
         except ImportError:
-            logger.info("No existe conector para #"+serverid+"#")
-            #import traceback
-            #logger.info(traceback.format_exc())
+            logger.info("No existe conector para "+serverid)
         except:
-            logger.info("Error en el conector #"+serverid+"#")
-            import traceback
-            logger.info(traceback.format_exc())
+            logger.info("Error en el conector "+serverid)
+            import traceback,sys
+            from pprint import pprint
+            exc_type, exc_value, exc_tb = sys.exc_info()
+            lines = traceback.format_exception(exc_type, exc_value, exc_tb)
+            for line in lines:
+                line_splits = line.split("\n")
+                for line_split in line_splits:
+                    logger.error(line_split)
 
     return devuelve
 

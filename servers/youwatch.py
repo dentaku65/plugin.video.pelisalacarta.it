@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------
 # pelisalacarta - XBMC Plugin
-# Conector para gamovideo
+# Server per youwatch
 # http://blog.tvalacarta.info/plugin-xbmc/pelisalacarta/
 #------------------------------------------------------------
 
@@ -20,9 +20,29 @@ def test_video_exists( page_url ):
 def get_video_url( page_url , premium = False , user="" , password="", video_password="" ):
     logger.info("youwatch get_video_url(page_url='%s')" % page_url)
     if not "embed" in page_url:
-      page_url = page_url.replace("http://youwatch.org/","http://youwatch.org/embed-") + ".html"
+      #page_url = page_url.replace("http://youwatch.org/","http://youwatch.org/embed-") + ".html"
+      ## - fix ------------------------------------------------------
+      page_url = page_url.replace("http://youwatch.org/","http://youwatch.org/embed-") + "-640x360.html"
+      ## ------------------------------------------------------------
 
     data = scrapertools.cache_page(page_url)
+
+    ## - fix ------------------------------------------------------
+    patron_new_url = '<body[^<]+<iframe.*?src="([^"]+)"'
+    new_url = scrapertools.find_single_match( data, patron_new_url )
+
+    while new_url != "":
+        host = scrapertools.get_match( new_url, '//([^/]+)/' )
+        headers = [
+            ['User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0'],
+            ['Accept-Encoding','gzip, deflate'],
+            ['Host',host],
+            ['Referer',new_url]
+        ]
+        data = scrapertools.cache_page( new_url, headers=headers )
+        new_url = scrapertools.find_single_match( data, patron_new_url )
+    ## -----------------------------------------------------------
+
     data = scrapertools.find_single_match(data,"<span id='flvplayer'></span>\n<script type='text/javascript'>(.*?)\n;</script>")
     data = unpackerjs3.unpackjs(data,0)
     url = scrapertools.get_match(data, 'file:"([^"]+)"')
@@ -31,7 +51,7 @@ def get_video_url( page_url , premium = False , user="" , password="", video_pas
 
     for video_url in video_urls:
         logger.info("[youwatch.py] %s - %s" % (video_url[0],video_url[1]))
-        
+       
 
     return video_urls
 
@@ -54,7 +74,7 @@ def find_videos(data):
             encontrados.add(url)
         else:
             logger.info("  url duplicada="+url)
-            
+           
 
     patronvideos  = 'http://youwatch.org/embed-([a-z0-9]+)'
     logger.info("youwatch find_videos #"+patronvideos+"#")
@@ -69,7 +89,7 @@ def find_videos(data):
             encontrados.add(url)
         else:
             logger.info("  url duplicada="+url)
-            
+           
     return devuelve
 
 def test():
