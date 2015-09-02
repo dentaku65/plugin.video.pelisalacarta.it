@@ -5,7 +5,6 @@
 # http://blog.tvalacarta.info/plugin-xbmc/pelisalacarta/
 #------------------------------------------------------------
 import urlparse
-import urllib2
 import re
 import sys
 
@@ -72,13 +71,39 @@ def search(item,texto):
     logger.info("[tantifilm.py] "+item.url+" search "+texto)
     item.url = "http://www.tantifilm.net/?s="+texto
     try:
-        return peliculas(item)
+        return search_peliculas(item)
     # Se captura la excepción, para no interrumpir al buscador global si un canal falla
     except:
         import sys
         for line in sys.exc_info():
             logger.error( "%s" % line )
         return []
+
+def search_peliculas(item):
+    logger.info("pelisalacarta.tantifilm search_peliculas")
+    itemlist = []
+
+    # Descarga la pagina
+    data = scrapertools.cache_page(item.url, headers=headers)
+
+    # Extrae las entradas (carpetas)
+    patron = '<a href="([^"]+)" title="([^"]+)" rel="[^"]+">\s*<img width="[^"]+" height="[^"]+" src="([^"]+)" class="[^"]+" alt="[^"]+" />'
+    matches = re.compile(patron,re.DOTALL).findall(data)
+    scrapertools.printMatches(matches)
+
+    for scrapedurl,scrapedtitle,scrapedthumbnail in matches:
+        html = scrapertools.cache_page(scrapedurl, headers=headers)
+        start = html.find("<div class=\"content-left-film\">")
+        end = html.find("</div>", start)
+        scrapedplot = html[start:end]
+        scrapedplot = re.sub(r'<[^>]*>', '', scrapedplot)
+        scrapedplot = scrapertools.decodeHtmlentities(scrapedplot)
+        scrapedtitle = scrapertools.decodeHtmlentities(scrapedtitle)
+        scrapedtitle = scrapedtitle.replace("streaming", "").replace("Permalink to ", "")
+        if (DEBUG): logger.info("title=["+scrapedtitle+"], url=["+scrapedurl+"], thumbnail=["+scrapedthumbnail+"]")
+        itemlist.append( Item(channel=__channel__, action="findvideos", title="[COLOR azure]"+scrapedtitle+"[/COLOR]" , url=scrapedurl , thumbnail=scrapedthumbnail , plot=scrapedplot , folder=True) )
+
+    return itemlist
 
 def peliculas(item):
     logger.info("pelisalacarta.tantifilm peliculas")
@@ -88,7 +113,7 @@ def peliculas(item):
     data = scrapertools.cache_page(item.url, headers=headers)
 
     # Extrae las entradas (carpetas)
-    patron = '<div class="media3">[^>]+><a href="(.*?)"><img[^s]+src="(.*?)"[^>]+></a><[^>]+><a[^>]+><p>(.*?)</p></a></div>'
+    patron = '<div class="media3">[^>]+><a href="([^"]+)"><img[^s]+src="([^"]+)"[^>]+></a><[^>]+><a[^>]+><p>(.*?)</p></a></div>'
     matches = re.compile(patron,re.DOTALL).findall(data)
     scrapertools.printMatches(matches)
 
@@ -101,7 +126,6 @@ def peliculas(item):
         scrapedplot = scrapertools.decodeHtmlentities(scrapedplot)
         scrapedtitle = scrapertools.decodeHtmlentities(scrapedtitle)
         scrapedtitle = scrapedtitle.replace("streaming","")
-        #scrapedplot = ""
         if (DEBUG): logger.info("title=["+scrapedtitle+"], url=["+scrapedurl+"], thumbnail=["+scrapedthumbnail+"]")
         itemlist.append( Item(channel=__channel__, action="findvideos", title="[COLOR azure]"+scrapedtitle+"[/COLOR]" , url=scrapedurl , thumbnail=scrapedthumbnail , plot=scrapedplot , folder=True) )
 
@@ -125,8 +149,8 @@ def latest(item):
 
     # Extrae las entradas (carpetas)
     patron = '<div class="mediaWrap mediaWrapAlt">\s*'
-    patron += '<a href="(.*?)" title="(.*?)" rel="bookmark">\s*'
-    patron += '<img[^s]+src="(.*?)"[^>]+>'
+    patron += '<a href="([^"]+)" title="([^"]+)" rel="bookmark">\s*'
+    patron += '<img[^s]+src="([^"]+)"[^>]+>'
     matches = re.compile(patron,re.DOTALL).findall(data)
     scrapertools.printMatches(matches)
 
