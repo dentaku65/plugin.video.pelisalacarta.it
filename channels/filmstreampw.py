@@ -58,7 +58,7 @@ def categorias(item):
     bloque = scrapertools.get_match(data,'<ul class="box-bg right-navi clearfix">([^?]+)</select>')
     
     # The categories are the options for the combo
-    patron = '<li><a href="(.*?)">(.*?)</a></li>'
+    patron = '<li><a href="([^"]+)">(.*?)</a></li>'
     matches = re.compile(patron,re.DOTALL).findall(bloque)
     scrapertools.printMatches(matches)
 
@@ -84,7 +84,7 @@ def byyear(item):
     bloque = scrapertools.get_match(data,'<ul class="box-bg right-navi clearfix">([^?]+)</select>')
     
     # The categories are the options for the combo
-    patron = '<option value="(.*?)">(.*?)</option>'
+    patron = '<option value="([^"]+)">(.*?)</option>'
     matches = re.compile(patron,re.DOTALL).findall(bloque)
     scrapertools.printMatches(matches)
 
@@ -120,7 +120,7 @@ def peliculasx(item):
     data = scrapertools.cache_page(item.url, headers=headers)
 
     # Extrae las entradas (carpetas)
-    patron  = '<div class="news2 float">.*?<div class="boxgrid2 caption2">.*?<a href="(.*?)">.*?<img.*?src="(.*?)"/>.*?<div class="cover2 boxcaption2">.*?<div class="boxgridtext">(.*?)</div>.*?<br>'
+    patron  = '<div class="news2 float">.*?<div class="boxgrid2 caption2">.*?<a href="([^"]+)">.*?<img.*?src="([^"]+)"/>.*?<div class="cover2 boxcaption2">.*?<div class="boxgridtext">(.*?)</div>.*?<br>'
     matches = re.compile(patron,re.DOTALL).findall(data)
     scrapertools.printMatches(matches)
 
@@ -145,7 +145,7 @@ def peliculas(item):
     data = scrapertools.cache_page(item.url, headers=headers)
 
     # Extrae las entradas (carpetas)
-    patron  = '<div class="boxgrid2[^>]+>[^<]+<a href="(.*?)">[^<]+<img.*?[^"]+"[^"]+" src="(.*?)"[^>]+>[^>]+>[^>]+>([^<]+)<br>'
+    patron  = '<div class="boxgrid2[^>]+>[^<]+<a href="([^"]+)">[^<]+<img.*?[^"]+"[^"]+" src="([^"]+)"[^>]+>[^>]+>[^>]+>([^<]+)<br>'
     matches = re.compile(patron,re.DOTALL).findall(data)
     scrapertools.printMatches(matches)
 
