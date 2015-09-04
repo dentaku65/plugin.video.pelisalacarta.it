@@ -22,12 +22,12 @@ __language__ = "IT"
 
 DEBUG = config.get_setting("debug")
 
-sito = "http://www.tantifilm.net"
+host = "http://www.tantifilm.net"
 
 headers = [
     ['User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0'],
     ['Accept-Encoding', 'gzip, deflate'],
-    ['Referer', 'http://www.tantifilm.net/'],
+    ['Referer', host],
     ['Connection', 'keep-alive']
 ]
 
@@ -41,28 +41,28 @@ def mainlist(item):
     itemlist = [Item(channel=__channel__,
                      title="[COLOR azure]Ultimi film[/COLOR]",
                      action="latest",
-                     url="http://www.tantifilm.net/",
+                     url=host,
                      thumbnail="http://dc584.4shared.com/img/XImgcB94/s7/13feaf0b538/saquinho_de_pipoca_01"),
                 Item(channel=__channel__,
                      title="[COLOR azure]Al Cinema[/COLOR]",
                      action="peliculas",
-                     url="http://www.tantifilm.net/watch-genre/al-cinema/",
+                     url="%s/watch-genre/al-cinema/" % host,
                      thumbnail="http://dc584.4shared.com/img/XImgcB94/s7/13feaf0b538/saquinho_de_pipoca_01"),
                 Item(channel=__channel__,
                      title="[COLOR azure]HD - Alta Definizione[/COLOR]",
                      action="peliculas",
-                     url="http://www.tantifilm.net/watch-genre/hd-alta-qualita/",
+                     url="%s/watch-genre/hd-alta-qualita/" % host,
                      thumbnail="http://dc584.4shared.com/img/XImgcB94/s7/13feaf0b538/saquinho_de_pipoca_01"),
                 Item(channel=__channel__,
                      title="[COLOR azure]Film Per Categoria[/COLOR]",
                      action="categorias",
-                     url="http://www.tantifilm.net/",
+                     url=host,
                      thumbnail="http://xbmc-repo-ackbarr.googlecode.com/svn/trunk/dev/skin.cirrus%20extended%20v2/extras/moviegenres/All%20Movies%20by%20Genre.png"),
                 Item(channel=__channel__,
                      title="[COLOR azure]Serie TV[/COLOR]",
                      extra="serie",
                      action="peliculas",
-                     url="http://www.tantifilm.net/watch-genre/serie-tv",
+                     url="%s/watch-genre/serie-tv" % host,
                      thumbnail="http://xbmc-repo-ackbarr.googlecode.com/svn/trunk/dev/skin.cirrus%20extended%20v2/extras/moviegenres/New%20TV%20Shows.png"),
                 Item(channel=__channel__,
                      title="[COLOR yellow]Cerca...[/COLOR]",
@@ -99,7 +99,7 @@ def categorias(item):
 
 def search(item, texto):
     logger.info("[tantifilm.py] " + item.url + " search " + texto)
-    item.url = "http://www.tantifilm.net/?s=" + texto
+    item.url = "%s/?s=%s" % (host, texto)
     try:
         return search_peliculas(item)
     # Se captura la excepción, para no interrumpir al buscador global si un canal falla
