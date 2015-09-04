@@ -296,6 +296,7 @@ def channels_list():
     itemlist.append( Item( title="Zentorrents"             , channel="zentorrents"        , language="ES" , category="T,F,S" , type="xbmc" , thumbnail="http://s6.postimg.org/9zv90yjip/zentorrentlogo.jpg"  ))
     itemlist.append( Item( title="Zpeliculas"              , channel="zpeliculas"         , language="ES" , category="F"       , type="generic"  ))
 ########## Start ITALIAN CHANNELS ###########
+    #itemlist.append( Item( title="[COLOR cyan]-- ITA Channels Info --[/COLOR]"       , channel="info_ita"           , language="IT"    , category="F,S,A,VOS"   , type="generic"  ))
     itemlist.append( Item( title="Cineblog01 (IT)"       , channel="cineblog01"           , language="IT"    , category="F,S,A,VOS"   , type="generic"  ))
     itemlist.append( Item( title="ItaliaFilms.tv (IT)"      , channel="italiafilm"           , language="IT"    , category="F,S,A"   , type="generic"     ))
     itemlist.append( Item( title="Film per tutti (IT)"      , channel="filmpertutti"           , language="IT"    , category="F,S,A"   , type="generic"     ))
@@ -328,7 +329,7 @@ def channels_list():
     itemlist.append( Item( title="[COLOR orange][NEW][/COLOR] Liberostreaming (IT)"          , channel="liberostreaming"         , language="IT" , category="F,S,A"        , type="generic", thumbnail="http://www.liberostreaming.org/wp-content/uploads/2015/01/cooltext1859870362.png"))
     itemlist.append( Item( title="[COLOR red][DEV][/COLOR] Altadefinizione.click (IT)"          , channel="altadefinizioneclick"         , language="IT" , category="F,S,A"        , type="generic", thumbnail="http://i.imgur.com/FSHW6Zx.png"))
     itemlist.append( Item( title="[COLOR red][DEV][/COLOR] ItaStreaming (IT)"          , channel="itastreaming"         , language="IT" , category="F,S,A"        , type="generic", thumbnail="http://itastreaming.co/wp-content/uploads/2015/08/logo.png"))
-    itemlist.append( Item( title="[COLOR red][DEV][/COLOR] Ildocumento (IT)"          , channel="ildocumento"         , language="IT" , category="F,D"        , type="generic" , extra="Series" ,thumbnail="http://ildocumento.it/ildocumento-social.jpg"))
+    #itemlist.append( Item( title="[COLOR red][DEV][/COLOR] Ildocumento (IT)"          , channel="ildocumento"         , language="IT" , category="F,D"        , type="generic" , extra="Series" ,thumbnail="http://ildocumento.it/ildocumento-social.jpg"))
     itemlist.append( Item( title="[COLOR red][DEV][/COLOR] Documentaristreaming (IT)"          , channel="documentaristreaming"         , language="IT" , category="F,D"        , type="generic" , extra="Series" ,thumbnail="http://tvstreamingonline.org/images/IMG/documentari%20streaming.jpg"))
     itemlist.append( Item( title="[COLOR red][DEV][/COLOR] Documoo (IT)"          , channel="documoo"         , language="IT" , category="F,D"        , type="generic" , extra="Series" ,thumbnail="http://www.documoo.tv/wp-content/uploads/logo_documoo.jpg"))
 ##### End ITALIAN CHANNELS ######
