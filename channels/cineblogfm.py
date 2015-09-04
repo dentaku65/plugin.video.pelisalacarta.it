@@ -248,7 +248,7 @@ def findvid_series( item ):
     ## Extrae las datos
     if "|" not in item.url:
         ## Descarga la página
-        data = scrapertools.cache_page( item.url, headers=headers )
+        data = scrapertools.cache_page( item.url)
 
         sources = scrapertools.get_match( data, '(<noindex> <div class="video-player-plugin">.*?</noindex>)')
 
