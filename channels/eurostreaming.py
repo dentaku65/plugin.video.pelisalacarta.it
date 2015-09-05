@@ -162,6 +162,23 @@ def search(item, texto):
 
 
 def episodios(item):
+
+    def load_episodios():
+        for data in match.split('<br/>'):
+            ## Extrae las entradas
+            end = data.find('<a ')
+            if end > 0:
+                scrapedtitle = scrapertools.find_single_match(data[:end], '\d+[^\d]+\d+')
+                itemlist.append(
+                    Item(channel=__channel__,
+                         action="findvid_serie",
+                         title="[COLOR azure]" + scrapedtitle + " (" + lang_title + ")" + "[/COLOR]",
+                         url=item.url,
+                         thumbnail=item.thumbnail,
+                         extra=data,
+                         fulltitle=item.title,
+                         show=item.title))
+
     logger.info("[eurostreaming.py] episodios")
 
     itemlist = []
@@ -170,23 +187,18 @@ def episodios(item):
     data = scrapertools.cache_page(item.url)
     data = scrapertools.decodeHtmlentities(data)
 
-    patron = '<div class="su-spoiler-content su-clearfix" style="display:none">(.+?)</div></div>'
+    patron = '</span>([^<]+)</div><div class="su-spoiler-content su-clearfix" style="display:none">(.+?)</div></div>'
     matches = re.compile(patron, re.DOTALL).findall(data)
-    for match in matches:
-        for data in match.split('<br/>'):
-            ## Extrae las entradas
-            scrapedtitle = data.split('<a ')[0]
-            scrapedtitle = re.sub(r'<[^>]*>', '', scrapedtitle)
+    for lang_title, match in matches:
+        lang_title = 'SUB ITA' if 'SUB' in lang_title else 'ITA'
+        load_episodios()
 
-            itemlist.append(
-                Item(channel=__channel__,
-                     action="findvid_serie",
-                     title="[COLOR azure]" + scrapedtitle + "[/COLOR]",
-                     url=item.url,
-                     thumbnail=item.thumbnail,
-                     extra=data,
-                     fulltitle=item.title,
-                     show=item.title))
+    patron = '<li><span style="[^"]+"><a onclick="[^"]+" href="[^"]+">([^<]+)</a>(?:</span>\s*<span style="[^"]+"><strong>([^<]+)</strong>)?</span>(.*?)</div>\s*</li>'
+    matches = re.compile(patron, re.DOTALL).findall(data)
+    for lang_title1, lang_title2, match in matches:
+        lang_title = 'SUB ITA' if 'SUB' in lang_title1+lang_title2 else 'ITA'
+        load_episodios()
+
     return itemlist
 
 
