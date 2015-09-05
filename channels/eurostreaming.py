@@ -185,6 +185,18 @@ def episodios(item):
 
     ## Descarga la página
     data = scrapertools.cache_page(item.url)
+
+    patron = r"onclick=\"top.location=atob\('([^']+)'\)\""
+    b64_link = scrapertools.find_single_match(data, patron)
+    if b64_link != '':
+        import base64
+        data = scrapertools.cache_page(base64.b64decode(b64_link))
+
+    patron = r'<a href="(%s/\?p=\d+)">' % host
+    link = scrapertools.find_single_match(data, patron)
+    if link != '':
+        data = scrapertools.cache_page(link)
+
     data = scrapertools.decodeHtmlentities(data)
 
     patron = '</span>([^<]+)</div><div class="su-spoiler-content su-clearfix" style="display:none">(.+?)</div></div>'
