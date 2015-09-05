@@ -202,13 +202,13 @@ def episodios(item):
     patron = '</span>([^<]+)</div><div class="su-spoiler-content su-clearfix" style="display:none">(.+?)</div></div>'
     matches = re.compile(patron, re.DOTALL).findall(data)
     for lang_title, match in matches:
-        lang_title = 'SUB ITA' if 'SUB' in lang_title else 'ITA'
+        lang_title = 'SUB ITA' if 'SUB' in lang_title.upper() else 'ITA'
         load_episodios()
 
     patron = '<li><span style="[^"]+"><a onclick="[^"]+" href="[^"]+">([^<]+)</a>(?:</span>\s*<span style="[^"]+"><strong>([^<]+)</strong>)?</span>(.*?)</div>\s*</li>'
     matches = re.compile(patron, re.DOTALL).findall(data)
     for lang_title1, lang_title2, match in matches:
-        lang_title = 'SUB ITA' if 'SUB' in lang_title1+lang_title2 else 'ITA'
+        lang_title = 'SUB ITA' if 'SUB' in (lang_title1+lang_title2).upper() else 'ITA'
         load_episodios()
 
     return itemlist

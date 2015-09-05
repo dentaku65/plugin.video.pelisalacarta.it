@@ -217,21 +217,26 @@ def episodios(item):
     data = scrapertools.cache_page(item.url)
     data = scrapertools.decodeHtmlentities(data)
 
-    patron = '<!--/colorend--><br />(.+ StreamNowMovies HD </a>)'
+    patron = r'<!--colorstart:#(\d+)--><span style="color:#\1">(.+ StreamNowMovies HD </a>)'
     matches = re.compile(patron, re.DOTALL).findall(data)
-    for match in matches:
+
+    for _, match in matches:
         for data in match.split('<br />'):
             ## Extrae las entradas
-            scrapedtitle = data.split('<a ')[0]
-            itemlist.append(
-                Item(channel=__channel__,
-                     action="findvid_serie",
-                     title="[COLOR azure]" + scrapedtitle + "[/COLOR]",
-                     url=item.url,
-                     thumbnail=item.thumbnail,
-                     extra=data,
-                     fulltitle=item.title,
-                     show=item.title))
+            season_title = scrapertools.find_single_match(data, '<b>([^<]+)</b>')
+            if season_title != '':
+                lang_title = 'SUB ITA' if 'SUB' in season_title.upper() else 'ITA'
+            scrapedtitle = scrapertools.find_single_match(data, '\d+x\d+')
+            if scrapedtitle != '':
+                itemlist.append(
+                    Item(channel=__channel__,
+                         action="findvid_serie",
+                         title="[COLOR azure]" + scrapedtitle + " (" + lang_title + ")" + "[/COLOR]",
+                         url=item.url,
+                         thumbnail=item.thumbnail,
+                         extra=data,
+                         fulltitle=item.title,
+                         show=item.title))
 
     return itemlist
 
