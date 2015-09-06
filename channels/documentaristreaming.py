@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------
 # pelisalacarta - XBMC Plugin
-# Canal para piratestreaming
+# Canal para documentaristreaming
 # http://blog.tvalacarta.info/plugin-xbmc/pelisalacarta/
 # by dentaku65, DrZ3r0
 # ------------------------------------------------------------
@@ -58,21 +58,28 @@ def peliculas(item):
 
 
     # Extrae las entradas (carpetas)
-    patron = '<div class="vw-block-grid-item">\s*'
+    patron = '<img[^s]+src="(.*?)"[^>]+>[^<]+<[^<]+<[^<]+<[^<]+<[^<]+</a>\s*'
     patron += '<div[^>]+>\s*'
-    patron += '<a class="vw-post-box-thumbnail" href="(.*?)"[^>]+>\s*'
-    patron += '<img.*?src="(.*?)"[^<]+<span[^<]+<[^<]+<[^<]+<[^<]+</a>\s*'
-    patron += '<div[^>]+>\s*'
-    patron += '<div[^<]+<[^<]+<[^<]+<[^>]+>\s*'
+    patron += '<div[^<]+<[^<]+<[^<]+</div>\s*'
     patron += '<h3[^>]+>\s*'
-    patron += '<a[^>]+>\s*'
-    patron += '(.*?)</a>'
+    patron += '<a href="(.*?)"[^>]+>\s*'
+    patron += '(.*?)</a>\s*'
+    patron += '</h3>\s*'
+    patron += '<div[^>]+>\s*'
+    patron += '<span[^>]+>\s*'
+    patron += '<a[^<]+<[^<]+</a>\s*'
+    patron += '<a[^<]+</a>\s*'
+    patron += '</span>\s*'
+    patron += '<span[^<]+</span>\s*'
+    patron += '<a[^<]+<[^<]+<[^<]+<[^<]+<[^<]+</a>\s*'
+    patron += '</div>\s*'
+    patron += '<div[^>]+><p>(.*?)</p>'
     matches = re.compile(patron, re.DOTALL).findall(data)
     scrapertools.printMatches(matches)
 
-    for scrapedurl, scrapedthumbnail, scrapedtitle in matches:
+    for scrapedthumbnail, scrapedurl, scrapedtitle, scrapedplot in matches:
         scrapedtitle = scrapertools.decodeHtmlentities(scrapedtitle)
-        scrapedplot = ""
+        scrapedplot = scrapertools.decodeHtmlentities(scrapedplot)
         if (DEBUG): logger.info(
             "title=[" + scrapedtitle + "], url=[" + scrapedurl + "], thumbnail=[" + scrapedthumbnail + "]")
         itemlist.append(
