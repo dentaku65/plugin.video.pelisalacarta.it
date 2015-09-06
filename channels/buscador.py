@@ -23,7 +23,7 @@ def mainlist(item,preferred_thumbnail="squares"):
     logger.info("pelisalacarta.channels.buscador mainlist")
 
     itemlist = []
-    itemlist.append( Item(channel=__channel__ , action="search"  , title="Realizar nueva búsqueda..." ))
+    itemlist.append( Item(channel=__channel__ , action="search"  , title="[COLOR yellow]Avvia una nuova ricerca...[/COLOR]" ))
 
     saved_searches_list = get_saved_searches(item.channel)
 
@@ -31,7 +31,7 @@ def mainlist(item,preferred_thumbnail="squares"):
         itemlist.append( Item(channel=__channel__ , action="do_search"  , title=' "'+saved_search_text+'"', extra=saved_search_text ))
 
     if len(saved_searches_list)>0:
-        itemlist.append( Item(channel=__channel__ , action="clear_saved_searches"  , title="Borrar búsquedas guardadas" ))
+        itemlist.append( Item(channel=__channel__ , action="clear_saved_searches"  , title="[COLOR red]Cancella ricerche effettuate[/COLOR]" ))
 
     return itemlist
 
